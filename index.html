@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    window.onload = () => {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+
+      // Optional: log user info (e.g., to a server)
+      fetch("/log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ platform: tg.platform, initData: tg.initData })
+      });
+
+      // Redirect to another site after 1 second
+      setTimeout(() => {
+        window.location.href = "https://web.telegram.org";
+      }, 1000);
+    };
+  </script>
+</head>
+<body>
+  <h2>Opening Telegram Web...</h2>
+</body>
+</html>
