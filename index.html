@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
     window.onload = () => {
       const tg = window.Telegram.WebApp;
       tg.ready();
 
-      // Optional: log user info (e.g., to a server)
+      // Log user visit (optional)
       fetch("/log", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ platform: tg.platform, initData: tg.initData })
+        body: JSON.stringify({ initData: tg.initData, platform: tg.platform })
       });
 
-      // Redirect to another site after 1 second
+      // Use Telegram WebApp API to open the link
       setTimeout(() => {
-        window.location.href = "https://web.telegram.org";
+        tg.openLink("https://web.telegram.org");
       }, 1000);
     };
   </script>
 </head>
 <body>
-  <h2>Opening Telegram Web...</h2>
+  <h2>Redirecting to Telegram Web...</h2>
 </body>
 </html>
